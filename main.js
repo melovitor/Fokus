@@ -39,13 +39,16 @@ function handleChangeContext(context){
                 Que tal dar uma respirada?<br>
                 <strong class="app__title-strong">Faça uma pausa curta!</strong>
             `
-        break;
+            break;
         case 'descanso-longo': 
             title.innerHTML = `
                 Hora de voltar á superfície.<br>
                 <strong class="app__title-strong">Faça uma pausa longa.</strong>
             `
-        break;
+            break;
+
+        default:
+            break;
 
     }
 
