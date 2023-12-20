@@ -5,6 +5,9 @@ const longButton = document.querySelector('.app__card-button--longo')
 const banner = document.querySelector('.app__image')
 const title = document.querySelector('.app__title')
 const buttons = document.querySelectorAll('.app__card-button')
+const musicCheckbox = document.querySelector('#alternar-musica')
+const music = new Audio('/sons/luna-rise-part-one.mp3')
+music.loop = true
 
 
 focusButton.addEventListener('click', () => {
@@ -21,6 +24,13 @@ longButton.addEventListener('click', () => {
     handleChangeContext('descanso-longo')
     longButton.classList.add('active')
 })
+
+
+musicCheckbox.addEventListener('change', () => {
+    music.paused ? music.play() : music.pause()
+})
+
+
 
 
 function handleChangeContext(context){
