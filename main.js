@@ -7,16 +7,19 @@ const banner = document.querySelector('.app__image')
 
 
 focusButton.addEventListener('click', () => {
-    html.setAttribute('data-contexto', 'foco')
-    banner.setAttribute('src', '/imagens/foco.png')
+    handleChangeContext('foco')
 })
 
 shortButton.addEventListener('click', () => {
-    html.setAttribute('data-contexto', 'descanso-curto')
-    banner.setAttribute('src', '/imagens/descanso-curto.png')
+    handleChangeContext('descanso-curto')
 })
 
 longButton.addEventListener('click', () => {
-    html.setAttribute('data-contexto', 'descanso-longo')
-    banner.setAttribute('src', '/imagens/descanso-longo.png')
+    handleChangeContext('descanso-longo')
 })
+
+
+function handleChangeContext(context){
+    html.setAttribute('data-contexto', context)
+    banner.setAttribute('src', `/imagens/${context}.png`)
+}
