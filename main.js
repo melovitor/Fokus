@@ -76,15 +76,27 @@ function handleChangeContext(context){
 }
 
 const countdown = () => {
-    // init()
+    if (timeInSeconds <= 0 ) {
+        clearCountdown()
+        alert('Hora de descansar!')
+        return 
+    }
     timeInSeconds -= 1 
     console.log('countdown', timeInSeconds )
 }
 
-startPause.addEventListener('click', countdown)
+startPause.addEventListener('click', handleActionCountdown)
 
 
-function init (){
+function handleActionCountdown(){
+    if(intervalId){
+        clearCountdown()
+        return
+    }
     intervalId = setInterval(countdown, 1000)
+}
 
+function clearCountdown() {
+    clearInterval(intervalId)
+    intervalId = null
 }
