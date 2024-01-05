@@ -47,13 +47,13 @@ musicCheckbox.addEventListener('change', () => {
 function handleChangeContext(context){
     html.setAttribute('data-contexto', context)
     banner.setAttribute('src', `/imagens/${context}.png`)
-
     buttons.forEach((context) => {
         context.classList.remove('active')
     })
 
     switch (context) {
         case 'foco': 
+            timeInSeconds = 1500
             title.innerHTML = `
                 Otimize sua produtividade,<br>
                 <strong class="app__title-strong">mergulhe no que importa.</strong>
@@ -61,13 +61,16 @@ function handleChangeContext(context){
         break;
 
         case 'descanso-curto': 
+            timeInSeconds = 300
             title.innerHTML = `
                 Que tal dar uma respirada?<br>
                 <strong class="app__title-strong">Faça uma pausa curta!</strong>
             `
+            
             break;
 
         case 'descanso-longo': 
+            timeInSeconds = 900
             title.innerHTML = `
                 Hora de voltar á superfície.<br>
                 <strong class="app__title-strong">Faça uma pausa longa.</strong>
@@ -78,6 +81,7 @@ function handleChangeContext(context){
             break;
 
     }
+    countdownTime()
 
 }
 
@@ -117,8 +121,9 @@ function clearCountdown() {
 }
 
 function countdownTime() {
-    const time = timeInSeconds
-    timerScreen.innerHTML = `${time}`
+    const time = new Date(timeInSeconds * 1000)
+    const minutes = time.toLocaleString('pt-br', {minute: '2-digit', second: '2-digit'})
+    timerScreen.innerHTML = `${minutes}`
 }
 
 countdownTime()
