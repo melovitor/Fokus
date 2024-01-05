@@ -12,6 +12,7 @@ const pause = new Audio('/sons/pause.mp3')
 const beep = new Audio('/sons/beep.mp3')
 const startPause = document.querySelector('#start-pause')
 const startPauseText = document.querySelector('#start-pause span')
+const img = document.querySelector('.app__card-primary-butto-icon')
 
 music.loop = true
 
@@ -101,6 +102,8 @@ function handleActionCountdown(){
     }
     intervalId = setInterval(countdown, 1000)
     startPauseText.textContent = "Pausar"
+    img.src = '/imagens/pause.png'
+    
     
 }
 
@@ -109,4 +112,5 @@ function clearCountdown() {
     intervalId = null
     startPauseText.textContent = "Começar"
     pause.play()
+    img.src = '/imagens/play_arrow.png'
 }
