@@ -11,12 +11,12 @@ const play = new Audio('/sons/play.wav')
 const pause = new Audio('/sons/pause.mp3')
 const beep = new Audio('/sons/beep.mp3')
 const startPause = document.querySelector('#start-pause')
+const startPauseText = document.querySelector('#start-pause span')
 
 music.loop = true
 
 let timeInSeconds = 5
 let intervalId = null
-let playPauseSound = true
 
 
 focusButton.addEventListener('click', () => {
@@ -81,11 +81,9 @@ function handleChangeContext(context){
 
 const countdown = () => {
     if (timeInSeconds <= 0 ) {
-        clearCountdown()
         beep.play()
-        playPauseSound = true 
         alert('Hora de descansar!')
-        timeInSeconds = 5 
+        clearCountdown()
         return 
     }
     timeInSeconds -= 1 
@@ -96,16 +94,19 @@ startPause.addEventListener('click', handleActionCountdown)
 
 
 function handleActionCountdown(){
-    playPauseSound === true ? play.play() : pause.play()
-    playPauseSound = !playPauseSound
+    play.play()
     if(intervalId){
         clearCountdown()
         return
     }
     intervalId = setInterval(countdown, 1000)
+    startPauseText.textContent = "Pausar"
+    
 }
 
 function clearCountdown() {
     clearInterval(intervalId)
     intervalId = null
+    startPauseText.textContent = "Começar"
+    pause.play()
 }
