@@ -13,10 +13,11 @@ const beep = new Audio('/sons/beep.mp3')
 const startPause = document.querySelector('#start-pause')
 const startPauseText = document.querySelector('#start-pause span')
 const img = document.querySelector('.app__card-primary-butto-icon')
+const timerScreen = document.querySelector('#timer')
 
 music.loop = true
 
-let timeInSeconds = 5
+let timeInSeconds = 1500
 let intervalId = null
 
 
@@ -88,7 +89,7 @@ const countdown = () => {
         return 
     }
     timeInSeconds -= 1 
-    console.log('countdown', timeInSeconds )
+    countdownTime()
 }
 
 startPause.addEventListener('click', handleActionCountdown)
@@ -114,3 +115,10 @@ function clearCountdown() {
     pause.play()
     img.src = '/imagens/play_arrow.png'
 }
+
+function countdownTime() {
+    const time = timeInSeconds
+    timerScreen.innerHTML = `${time}`
+}
+
+countdownTime()
