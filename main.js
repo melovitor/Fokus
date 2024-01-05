@@ -7,12 +7,16 @@ const title = document.querySelector('.app__title')
 const buttons = document.querySelectorAll('.app__card-button')
 const musicCheckbox = document.querySelector('#alternar-musica')
 const music = new Audio('/sons/luna-rise-part-one.mp3')
+const play = new Audio('/sons/play.wav')
+const pause = new Audio('/sons/pause.mp3')
+const beep = new Audio('/sons/beep.mp3')
 const startPause = document.querySelector('#start-pause')
 
 music.loop = true
 
 let timeInSeconds = 5
 let intervalId = null
+let playPauseSound = true
 
 
 focusButton.addEventListener('click', () => {
@@ -78,7 +82,10 @@ function handleChangeContext(context){
 const countdown = () => {
     if (timeInSeconds <= 0 ) {
         clearCountdown()
+        beep.play()
+        playPauseSound = true 
         alert('Hora de descansar!')
+        timeInSeconds = 5 
         return 
     }
     timeInSeconds -= 1 
@@ -89,6 +96,8 @@ startPause.addEventListener('click', handleActionCountdown)
 
 
 function handleActionCountdown(){
+    playPauseSound === true ? play.play() : pause.play()
+    playPauseSound = !playPauseSound
     if(intervalId){
         clearCountdown()
         return
